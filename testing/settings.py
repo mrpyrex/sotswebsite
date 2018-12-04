@@ -136,3 +136,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL  = 'blog:blog-home'
 LOGIN_URL           = 'login'
+
+
+# Local file settings
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
