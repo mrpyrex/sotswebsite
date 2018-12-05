@@ -9,6 +9,7 @@
             <form method="POST" action="">{% csrf_token %}
                 <fieldset class="form-group">
                     <legend class="mb-4">New Post</legend>
+                    {{ form.media}}
                     {{ form|crispy}}
                 </fieldset>
                 <button class="mb-3 btn btn-outline-info" type="submit">Post</button>

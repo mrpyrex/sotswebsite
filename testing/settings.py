@@ -138,6 +138,18 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL  = 'blog:blog-home'
 LOGIN_URL           = 'login'
 
+# CKEDITOR settings
+
+CKEDITOR_JQUERY_URL = os.path.join(STATIC_URL, 'js/jquery.js')
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        # 'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+    },
+}
+
 
 # Local file settings
 
