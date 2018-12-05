@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -18,7 +19,7 @@ class PostCategory(models.Model):
 class Post(models.Model):
     title           = models.CharField(max_length=200)
     slug            = models.SlugField(null=True)
-    content         = models.TextField()
+    content         = RichTextField()
     date_posted     = models.DateTimeField(default=timezone.now)
     thumb           = models.ImageField(default='default.png', blank=True, upload_to='images/')
     author          = models.ForeignKey(User, on_delete=models.CASCADE)
