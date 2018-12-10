@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    'accounts',
-    'blog',
+
+# Projet Apps
+    'accounts.apps.AccountsConfig',
+    'blog.apps.BlogConfig',
+    'pages.apps.PagesConfig',
+
+# Third Party Apps
     'crispy_forms',
     'ckeditor',
 ]
@@ -59,7 +63,7 @@ ROOT_URLCONF = 'testing.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,9 +136,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
+# Crspy Forms Settings
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+# Login URLs
 LOGIN_REDIRECT_URL  = 'blog:blog-home'
 LOGIN_URL           = 'login'
 

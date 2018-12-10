@@ -21,11 +21,11 @@ class Post(models.Model):
     slug            = models.SlugField(null=True)
     content         = RichTextField()
     date_posted     = models.DateTimeField(default=timezone.now)
-    thumb           = models.ImageField(default='default.png', blank=True, upload_to='images/')
+    thumb           = models.ImageField(blank=True, null=True, upload_to='images/')
     author          = models.ForeignKey(User, on_delete=models.CASCADE)
-    fetured         = models.BooleanField(default=False)
+    featured        = models.BooleanField(default=False)
     published       = models.BooleanField(default=False)
-    cat             = models.ForeignKey(PostCategory, null=True, on_delete=models.CASCADE)
+    category        = models.ForeignKey(PostCategory, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

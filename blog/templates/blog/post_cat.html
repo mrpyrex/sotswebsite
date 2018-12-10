@@ -12,7 +12,7 @@
                 <p>{{ post.content }}</p>
             </a>
                 <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-                <h5>{{ post.author|capfirst }}</h5>
+                <h5><a href="{% url 'user-post' post.author.username %}">{{ post.author|capfirst }}</a></h5>
                 <div>
                     <i class="fab fa-facebook-square"></i>
                     <i class="fab fa-twitter"></i>

@@ -1,3 +1,26 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+.navbar{
+    background: red !important;
+}
+
+img.img-responsive {
+    vertical-align: middle;
+    border-style: none;
+    width: 100%;
+    padding: 5px;
+}
+
+/* Footer */
+
+#main-footer {
+    background: #000;
+    color: #fff;
 }

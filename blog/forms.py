@@ -8,4 +8,5 @@ class PostModelForm(forms.ModelForm):
             'title',
             'content',
             'thumb',
+            'category',
         ]

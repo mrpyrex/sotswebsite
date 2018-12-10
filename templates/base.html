@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <title>S.O.T.S</title>
 </head>
@@ -15,13 +19,19 @@
     
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
             
-                <a class="navbar-brand" href="{% url 'blog:blog-home' %}"><h1>SOTS 247</h1></a>
+                <a class="navbar-brand" href="{% url 'pages:home' %}"><h1>SOTS 247</h1></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li 
+                        {% if '/' == request.path %}
+                        class="nav-item active"
+                        {% else %}
+                        class="nav-item"
+                        {% endif %}
+                        >
                             <a class="nav-link" href="">Government</a>
                         </li>
                         <li class="nav-item">
@@ -35,8 +45,8 @@
                         </li>                
                     </ul>
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a href="" class="nav-link">About us</a></li>
-                        <li class="nav-item"><a href="" class="nav-link">Contact us</a></li>
+                        <li class="nav-item"><a href="{% url 'pages:about' %}" class="nav-link">About us</a></li>
+                        <li class="nav-item"><a href="{% url 'pages:contact' %}" class="nav-link">Contact us</a></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link"> Logout</a></li>
                         <li class="nav-item"><a href="{% url 'post-create' %}" class="nav-link"> New Post</a></li>
@@ -63,51 +73,9 @@
     {% block content %}
     {% endblock %}
 
-<!-- Footer -->
-<footer class="page-footer font-small teal pt-4">
-
-        <!-- Footer Text -->
-        <div class="container-fluid text-center text-md-left">
-    
-          <!-- Grid row -->
-          <div class="row">
-    
-            <!-- Grid column -->
-            <div class="col-md-6 mt-md-0 mt-3">
-    
-              <!-- Content -->
-              <h5 class="text-uppercase font-weight-bold">Footer text 1</h5>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae harum esse fugiat. Itaque, culpa?</p>
-    
-            </div>
-            <!-- Grid column -->
-    
-            <hr class="clearfix w-100 d-md-none pb-3">
-    
-            <!-- Grid column -->
-            <div class="col-md-6 mb-md-0 mb-3">
-    
-              <!-- Content -->
-              <h5 class="text-uppercase font-weight-bold">Footer text 2</h5>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id excepturi hic.</p>
-    
-            </div>
-            <!-- Grid column -->
-    
-          </div>
-          <!-- Grid row -->
-    
-        </div>
-        <!-- Footer Text -->
-    
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© {% now 'Y' %} Copyright:
-          <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-        </div>
-        <!-- Copyright -->
-    
-      </footer>
-      <!-- Footer -->
+<footer id="main-footer">
+    <p class="text-center">&copy; SOTS {% now 'Y' %} powered by NEUPYTECH</p>
+</footer>
 
 <script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/popper.js' %}"></script>

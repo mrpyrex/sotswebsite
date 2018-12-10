@@ -5,18 +5,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">  
-            <h1>{{ view.kwargs.username }}</h1>       
+            <h1>{{ view.kwargs.username|capfirst }}</h1>       
             {% for post in posts %}
-            <a href="{% url 'blog:post-detail' post.slug %}">
-                <img src="{{ post.thumb.url }}" alt="Image" class="img-responsive">
-                <h1>{{ post.title }}</h1>
-                <p>{{ post.content }}</p>
-            </a>
-                <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-                <h5><a href="{% url 'user-post' post.author.username %}">{{ post.author|capfirst }}</a></h5>
-                <div>
+            <div class="card w-100 my-4" style="width: 18rem;">
+                    <a href="{% url 'blog:post-detail' post.slug %}">
+                    <img class="card-img-top" src="{{ post.thumb.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content|safe }}</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                    </a>
+                    <div class="p">
+                    <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                    <h5><a href="{% url 'user-post' post.author.username %}">{{ post.author|capfirst }}</a></h5>
                     <i class="fab fa-facebook-square"></i>
                     <i class="fab fa-twitter"></i>
+                    </div>
                 </div>
             {% endfor %}
 

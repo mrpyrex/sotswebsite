@@ -9,10 +9,17 @@ from .forms import PostModelForm
 # Create your views here.
 class PostListView(ListView):
     model = Post
+    queryset = Post.objects.filter(published=True)
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 5
+
+
+class PostCatListView(ListView):
+    model = Post
+    template_name = 'blog/post_cat.html'
+
 
 class UserPostListView(ListView):
     model = Post
@@ -63,7 +70,5 @@ class PostDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('blog:blog-home')
 
-
-def contact(request):
-    return render(request, 'blog/contact.html')
+    
 
