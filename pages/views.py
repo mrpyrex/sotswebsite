@@ -3,10 +3,10 @@ from blog.models import Post
 
 # Create your views here.
 def index(request):
-    posts = Post.objects.order_by('-date_posted').filter(featured=True)
+    featured_posts = Post.objects.all().filter(featured=True)
     context = {
         'title': 'Home',
-        'posts': posts
+        'featured_posts': featured_posts
     }
     return render(request, 'pages/index.html', context)
 

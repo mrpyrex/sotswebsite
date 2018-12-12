@@ -19,7 +19,8 @@
                     <div class="card-footer">
                     <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
                     <h5><a href="{% url 'user-post' post.author.username %}">{{ post.author|capfirst }}</a></h5>
-                    <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Flocalhost%3A8000%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="450" height="40" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                    <div class="fb-like" data-href="http://localhost:8000/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                 </div>
                 {% endfor %}

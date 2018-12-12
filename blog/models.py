@@ -10,14 +10,14 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 class PostCategory(models.Model):
-    cat_title       = models.CharField(max_length=200)
+    cat_title       = models.CharField(max_length=200, unique=True)
     cat_desc        = models.TextField()
 
     def __str__(self):
         return self.cat_title
 
 class Post(models.Model):
-    title           = models.CharField(max_length=200)
+    title           = models.CharField(max_length=200, unique=True)
     slug            = models.SlugField(null=True)
     content         = RichTextField()
     date_posted     = models.DateTimeField(default=timezone.now)
