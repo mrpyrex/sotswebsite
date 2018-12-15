@@ -1,6 +1,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     margin-bottom: 150px;
+    padding: 0;
+    margin: 0;
 }
 
 a:hover {

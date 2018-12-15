@@ -33,6 +33,14 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:post-detail', kwargs={'slug': self.slug})
 
+    # def approve_comments(self):
+    #     return self.comments.filter(approved_comments=True)
+
+
+# class Comment(models.Model):
+#     post_comment        = models.ForeignKey(Post, related_name='comments')
+
+
 @receiver(pre_save, sender=Post)
 def pre_save_slug(sender, **kwargs):
     slug = slugify(kwargs['instance'].title)
