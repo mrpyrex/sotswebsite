@@ -12,14 +12,14 @@
                     <a href="{% url 'blog:post-detail' post.slug %}">
                     <img class="card-img-top" src="{{ post.thumb.url }}" alt="Card image cap">
                     <div class="card-body">
-                        <h1 class="card-title">{{ post.title }}</h1>
-                        <p class="card-text">{{ post.content|safe }}</p>
+                        <h1 class="card-title display-3">{{ post.title }}</h1>
+                        <!-- <p class="card-text">{{ post.content|safe }}</p> -->
                     </div>
                     </a>
                     <div class="card-footer">
                     <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
                     <h5><a href="{% url 'user-post' post.author.username %}">{{ post.author|capfirst }}</a></h5>
-                    <div class="fb-like" data-href="http://localhost:8000/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                    <div class="fb-like" data-href="{{object.get_absolute_uri}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
                     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                 </div>

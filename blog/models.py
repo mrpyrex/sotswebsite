@@ -33,12 +33,21 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:post-detail', kwargs={'slug': self.slug})
 
-    # def approve_comments(self):
-    #     return self.comments.filter(approved_comments=True)
 
 
-# class Comment(models.Model):
-#     post_comment        = models.ForeignKey(Post, related_name='comments')
+class Comment(models.Model):
+    post                = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    comment_author      = models.CharField(max_length=50)
+    email               = models.EmailField()
+    body                = models.TextField()
+    date                = models.DateTimeField(default=timezone.now)
+    active              = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ('-date',)
+
+    def __str__(self):
+        return 'Comment by {} on {}'.format(self.comment_author, self.post)
 
 
 @receiver(pre_save, sender=Post)

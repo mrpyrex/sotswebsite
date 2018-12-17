@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 
 class PostModelForm(forms.ModelForm):
     class Meta:
@@ -9,4 +9,13 @@ class PostModelForm(forms.ModelForm):
             'content',
             'thumb',
             'category',
+        ]
+
+class PostCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = [
+            'comment_author',
+            'email',
+            'body',    
         ]
