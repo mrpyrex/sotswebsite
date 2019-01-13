@@ -9,7 +9,7 @@
             <form method="POST" action="">{% csrf_token %}
                 <fieldset class="form-group">
                     <legend class="mb-4">Login</legend>
-                    {{ form|crispy}}
+                    {{ form|crispy }}
                 </fieldset>
                 <button class="mb-3 btn btn-outline-info" type="submit">Login</button>
                 <small class="text-muted ml-2"><a href="{% url 'password_reset' %}">Forgot Password?</a></small>

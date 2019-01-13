@@ -1,76 +1,109 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-                {% for post in posts %}
-                
-                <div class="card w-100 my-4" style="width: 18rem;">
-                    <a href="{% url 'blog:post-detail' post.slug %}">
-                    <img class="card-img-top" src="{{ post.thumb.url }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h1 class="card-title display-3">{{ post.title }}</h1>
-                        <!-- <p class="card-text">{{ post.content|safe }}</p> -->
-                    </div>
-                    </a>
-                    <div class="card-footer">
-                    <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-                    <h5><a href="{% url 'user-post' post.author.username %}">{{ post.author|capfirst }}</a></h5>
-                    <div class="fb-like" data-href="{{object.get_absolute_uri}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
-                </div>
-                {% endfor %}
-<!-- Pagination -->
-        <div class="my-4">
-            {% if is_paginated %}
-            <nav aria-label="Page navigation example my-4">
-                <ul class="pagination">
-                {% if page_ogj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">&laquo;</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link">&laquo;</a>
-                </li>
-                {% endif %}
 
-                {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                    <li class="pag-item active">
-                        <a class="page-link">{{ num }}<span class="sr-only">(current)</span></a>
+<!-- SECTION -->
+<div class="section">
+        <!-- CONTAINER -->
+        <div class="container">
+            <!-- ROW -->
+            <div class="row">
+                <!-- Main Column -->
+                <div class="col-md-12">
+                    <!-- section title -->
+                    <div class="section-title">
+                        <h2 class="title">Latest Posts</h2>
+                    </div>
+                    <!-- /section title -->
+                    
+                    <!-- Tab content -->
+                    <div class="tab-content">
+                        <!-- tab1 -->
+                        <div id="tab1" class="">
+                            <!-- row -->
+                            <div class="row">
+                                <!-- Column 1 -->
+                                {% for post in posts %}
+                                <div class="col-md-4">
+                                    <!-- ARTICLE -->
+                                    <article class="article">
+                                        <div class="article-img">
+                                            <a href="{% url 'blog:post-detail' post.slug %}">
+                                                <img src="{{ post.thumb.url }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="article-body">
+                                            <h4 class="article-title"><a href="#">{{ post.title }}</a></h4>
+                                            <ul class="article-meta">
+                                                <li><i class="fa fa-clock-o"></i> {{ post.date_posted|date:"F d, Y" }}</li>
+                                                <li><a href="{% url 'user-post' post.author.username %}">{{ post.author|capfirst }}</a></li>
+                                            </ul>
+                                            <i class="fas fa-tags"></i>
+                                            {% for tag in post.tags.all %}
+                                            <a href="{% url 'blog:post-list-by-tag' tag.slug %}">
+                                            {{ tag.name }}</a>
+                                            {% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </article>
+                                    <!-- /ARTICLE -->
+                                </div>
+                                {% endfor %}
+                                <!-- /Column 1 -->
+                            </div>
+                            <!-- /row -->
+                        </div>
+                        <!-- /tab1 -->
+                    </div>
+                    <!-- Pagination -->
+        <div class="my-4">
+                {% if is_paginated %}
+                <nav aria-label="Page navigation example my-4">
+                    <ul class="pagination">
+                    {% if page_ogj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">&laquo;</a>
                     </li>
                     {% else %}
-                    <li class="pag-item active">
-                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    <li class="page-item disabled">
+                        <a class="page-link">&laquo;</a>
                     </li>
                     {% endif %}
-                {% endfor %}
-
-                {% if page_ogj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">&raquo;</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link">&raquo;</a>
-                </li>
+    
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                        <li class="pag-item active">
+                            <a class="page-link">{{ num }}<span class="sr-only">(current)</span></a>
+                        </li>
+                        {% else %}
+                        <li class="pag-item active">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+    
+                    {% if page_ogj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">&raquo;</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">&raquo;</a>
+                    </li>
+                    {% endif %}
+                    </ul>
+                </nav>
                 {% endif %}
-                </ul>
-            </nav>
-            {% endif %}
+            </div>
+    <!-- End Pagination -->
+                    <!-- /tab content -->
+                </div>
+                <!-- /Main Column -->
+            </div>
+            <!-- /ROW -->
         </div>
-<!-- End Pagination -->
-
-        </div>
-        <div class="col-md-4">
-            <h3 class="text-muted">Trending Tweets</h3>
-        </div>
+        <!-- /CONTAINER -->
     </div>
-</div>
-
+    <!-- /SECTION -->
 {% endblock %}

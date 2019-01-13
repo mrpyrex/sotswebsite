@@ -2,5 +2,27 @@
 
 
 {% block content %}
-<h1>About</h1>
+
+<div class="container">
+    <div class="row">
+    <h1>About Us</h1>
+      <div class="col-md-2"></div>
+      <div id="editor" class="col-md-8 py-4">
+        <h2>Editor's Note</h2>
+        <p>We wake up every morning to interesting and tragic tales of happenings Straight Off The Streets. These events even when are reported by media houses are twisted to suit the narratives of the various media outfits.
+        It is bad enough that these media houses now take sides with whoever the paymaster is, compromising ethical journalism, taking the side of the oppressor rather than that of the oppressed.</p>
+        <p>At sot247.com we aim to give reports on everyday society life that is not skewed or to favour partisan loyalty to government or persons. We give opinions based on facts and postulations from our individual point of view. sots247.com is a media for all views and voices, ideas and perspectives.</p>
+        <p>At sot247.com we provide a media platform where brands and service providers get to showcase their arts and craft to a bigger clients base. On the streets, we grow by helping each other.</p>
+        <p>Yours Truly;<br>
+        Udo Mbakara</p>
+        <a class="btn btn-outline-primary" href="{% url 'blog:blog-home' %}">Go To Blog</a> 
+      </div>
+      <div class="col-md-2">
+  
+      </div>
+    </div>
+    <div class="row">
+        <h2>Meet The Team</h2>
+    </div>
+</div>
 {% endblock %}

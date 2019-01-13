@@ -6,15 +6,25 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from taggit.managers import TaggableManager
 
 
 # Create your models here.
 class PostCategory(models.Model):
     cat_title       = models.CharField(max_length=200, unique=True)
+    slug            = models.SlugField(blank=True)
     cat_desc        = models.TextField()
+
+    class Meta:
+        verbose_name = 'postcategory'
+        verbose_name_plural = 'postcategories'
 
     def __str__(self):
         return self.cat_title
+
+    def get_absolute_url(self):
+        return reverse('blog:category.html', args=[self.slug])
+
 
 class Post(models.Model):
     title           = models.CharField(max_length=200, unique=True)
@@ -27,6 +37,8 @@ class Post(models.Model):
     published       = models.BooleanField(default=False)
     category        = models.ForeignKey(PostCategory, null=True, on_delete=models.CASCADE)
 
+    tags = TaggableManager()
+
     def __str__(self):
         return self.title
 
@@ -37,7 +49,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post                = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
-    comment_author      = models.CharField(max_length=50)
+    name                = models.CharField(max_length=50)
     email               = models.EmailField()
     body                = models.TextField()
     date                = models.DateTimeField(default=timezone.now)

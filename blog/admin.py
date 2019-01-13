@@ -11,8 +11,8 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display    = ('comment_author', 'email', 'post', 'date', 'active')
+    list_display    = ('name', 'email', 'post', 'date', 'active')
     list_filter     = ('active', 'date')
-    search_fields   = ('comment_author', 'email', 'body')
+    search_fields   = ('name', 'email', 'body')
 
 admin.site.register(Comment, CommentAdmin)
